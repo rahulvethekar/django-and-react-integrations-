@@ -59,10 +59,18 @@ class StudentById(APIView):
         try:
             student_obj = Student.objects.get(rn=rn)
             student_data = StudentSerializer(student_obj)
+            # print(student_data.data)
             return Response(student_data.data)
         
         except Student.DoesNotExist:
             return Response({'error':'student does not exist!'})
+    def delete(self,request,rn):
+        try:
+            Student.objects.get(rn=rn).delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Student.DoesNotExist as e:
+            return Response(repr(e))
+            
 
         
         

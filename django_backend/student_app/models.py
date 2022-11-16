@@ -10,6 +10,8 @@ class Student(models.Model):
     name = models.CharField(max_length = 30)
     marks = models.IntegerField(default = 0)
     city = models.CharField(max_length = 30)
+    created_on = models.DateField(null=True,auto_now_add=True)
+    modified_on = models.DateField(null=True,auto_now=True)
 
 
     
